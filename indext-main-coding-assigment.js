@@ -1,28 +1,27 @@
 console.log("starting my week 5 coding assignment")
-class Vehicle{
-    //We got started with Vehicle class
-    constructor(model, color){
-    //we will give our Vehicle a color and model
-        this.model = model;
+class Vehicle {
+   constructor(model, color) {
+   
+    this.model = model;
         this.color = color;
     }
-    describe(){
+
+    describe() {
         return`${this.model} builds ${this.color}.`;
 }
 }
 class Make {
-    //we create Make class
-    constructor(model){
-        this.model = model;
+    constructor(model) {
+        this.Model = model;
         this.Vehicle = [];
  }
+
   addVehicle(Vehicle) {
-    if(Vehicle instanceof Vehicle) {
-        //check if this vehicle is an instance of our vehicle class
-        this.Vehicle.push(Vehicle);
-}else{
+    if (Vehicle instanceof Vehicle) {
+    this.Vehicle.push(Vehicle);
+    }else{
         throw new Error(`you can only add an instance of Vehicle. Argument is not a vehicle: ${Vehicle} `);
-        //message saying what we did wrong 
+    
     }
   } 
   
@@ -32,19 +31,15 @@ class Make {
   }
 }
 class Menu {
-    //create Menu class this is what drives our application
-    constructor() {
-        //we will not take any arguments
+   constructor() {
         this.Make = [];
         this.selectedMake = null;
     }
-    start() {
-        //entry point to our menu application
-        let selection = this.showMainMenuOptions();
-        //this is our top-down development approach
 
+    start() {
+        let selection = this.showMainMenuOptions();
         while (selection != 0) {
-            switch (selection){
+            switch (selection) {
                 case '1':
                     this.createMake();
                     break;
@@ -66,17 +61,20 @@ class Menu {
         alert('Goodbye!');
 
     }
-    showMainMenuOptions(){
+
+    showMainMenuOptions() {
         return prompt(`
         0) exit
         1) create new make 
         2) view make
         3) delete make
         4) display all makes
-        `)
+        `);
     }
 
     showMakeMenuOptions(makeInfo) {
+
+    
         return prompt(`
        0) back
        1) create vehicle
@@ -86,10 +84,10 @@ class Menu {
         `);
     }
 
- displayMake(){
+ displayMake() {
         let makeString = '';
-        for (let i = 0; i < this.Make.length; i++){
-            makeString += i + ') ' + this.Make[i].model + '\n';
+        for (let i = 0; i < this.Make.length; i++) {
+            makeString += [i] + ') ' + this.Make[i].Model + '\n';
         }
         alert(makeString);
     }
@@ -102,11 +100,11 @@ class Menu {
         let index = prompt(`Enter the index of the make you wish to view:`);
         if (index > -1 && index < this.Make.length) {
             this.selectedMake = this.Make[index];
-            let description = 'Make Model: ' + this.selectedMake.model + '\n';
+            let description = 'Make Model: ' + this.selectedMake.Model + '\n';
 
-            for (let i = 0; i < this.selectedMake.Vehicle; i++){
-                description += i + ') ' + this.selectedMake.Vehicle[i].model 
-                + ' - ' + this.selectedMake.Vehicle[i].color + '\n';
+            for (let i = 0; i < this.selectedMake.Vehicle.length; i++) {
+                description += [i] + ') ' + this.selectedMake.Vehicle[i].model 
+                 + ' - ' + this.selectedMake.Vehicle[i].color + '\n';
  }
 
   let selection = this.showMakeMenuOptions(description);
@@ -121,7 +119,7 @@ class Menu {
     }      
         deleteMake() {
             let index = prompt('Enter the index of the make you wish to delete:');
-            if (index > -1 && index < this.Make.length){
+            if (index > -1 && index < this.Make.length) {
                 this.Make.splice(index, 1);
             }
         
